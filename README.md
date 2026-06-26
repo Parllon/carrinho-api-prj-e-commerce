@@ -1,98 +1,233 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Carrinho de Compras API — ShirtStore
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Microsserviço de carrinho de compras do projeto universitário **ShirtStore** (SENAC).
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+- **Responsável:** Parllon Mendonça
+- **Porta:** `3030`
+- **Stack:** NestJS 11 · TypeScript · Prisma 7 · MySQL · Docker
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Microsserviços do Grupo
 
-## Project setup
+| Porta | Serviço | Responsável |
+|-------|---------|-------------|
+| 3000 | API Gateway | Felipe |
+| 3010 | Catálogo de Produtos | Fábio |
+| 3020 | Pedidos e Pagamentos | Darley |
+| **3030** | **Carrinho de Compras** | **Parllon** |
+| 3040 | Usuários e Autenticação | Thales |
+| 3050 | Avaliações e Comentários | Nikolas |
 
-```bash
-$ npm install
-```
+---
 
-## Compile and run the project
+## Pré-requisitos
+
+| Software | Versão mínima |
+|----------|--------------|
+| Node.js | 20+ |
+| Git | qualquer |
+| Docker Desktop | qualquer (opcional) |
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+# Verificar instalações
+node -v
+git --version
+docker -v
 ```
 
-## Run tests
+---
+
+## Instalação
+
+### 1. Clonar o repositório
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone https://github.com/Parllon/carrinho-api-prj-e-commerce.git
+cd carrinho-api-prj-e-commerce
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 2. Instalar dependências
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm install
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 3. Configurar variáveis de ambiente
 
-## Resources
+Crie um arquivo `.env` na raiz com o seguinte conteúdo (obtenha os valores com o Parllon):
 
-Check out a few resources that may come in handy when working with NestJS:
+```env
+PORT=3030
+NODE_ENV=development
+DATABASE_URL="mysql://<usuario>:<senha>@edumysql.acesso.rj.senac.br:3306/<schema_parllon>"
+JWT_SECRET=<jwt_secret_compartilhado_com_thales>
+ALLOWED_ORIGINS=http://localhost:5173
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+> O arquivo `.env` nunca é commitado. Use `.env.example` como referência.
 
-## Support
+---
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Rodando o projeto
 
-## Stay in touch
+### Opção A — Sem Docker (desenvolvimento)
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+npm run start:dev
+```
 
-## License
+Aguarde: `Carrinho API rodando em http://localhost:3030`
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### Opção B — Com Docker
+
+Abra o **Docker Desktop** e aguarde a baleia aparecer na barra de tarefas.
+
+**Build da imagem:**
+```bash
+docker build -t carrinho-api .
+```
+
+**Rodar o container (Linux/Mac):**
+```bash
+docker run -d --name carrinho-api -p 3030:3030 \
+  -e PORT=3030 \
+  -e NODE_ENV=production \
+  -e DATABASE_URL=mysql://<usuario>:<senha>@edumysql.acesso.rj.senac.br:3306/<schema> \
+  -e JWT_SECRET=<jwt_secret> \
+  -e ALLOWED_ORIGINS=http://localhost:5173 \
+  carrinho-api
+```
+
+**Rodar o container (Windows PowerShell):**
+```powershell
+docker run -d --name carrinho-api -p 3030:3030 `
+  -e PORT=3030 `
+  -e NODE_ENV=production `
+  -e DATABASE_URL=mysql://<usuario>:<senha>@edumysql.acesso.rj.senac.br:3306/<schema> `
+  -e JWT_SECRET=<jwt_secret> `
+  -e ALLOWED_ORIGINS=http://localhost:5173 `
+  carrinho-api
+```
+
+**Verificar logs:**
+```bash
+docker logs carrinho-api
+```
+
+**Parar e remover o container:**
+```bash
+docker stop carrinho-api
+docker rm carrinho-api
+```
+
+> **Atenção:** não use `--env-file .env` diretamente com esse arquivo — o Docker não remove as aspas dos valores e a conexão falha. Passe as variáveis com `-e KEY=VALUE` conforme os comandos acima.
+
+---
+
+## Endpoints
+
+Swagger disponível em: **`http://localhost:3030/api`**
+
+| Método | Path | Autenticação | Descrição |
+|--------|------|:---:|-----------|
+| GET | `/carrinho` | ✅ | Retorna o carrinho do usuário (cria se não existir) |
+| POST | `/carrinho/itens` | ✅ | Adiciona item ao carrinho |
+| PATCH | `/carrinho/itens/:id` | ✅ | Atualiza quantidade do item |
+| DELETE | `/carrinho/itens/:id` | ✅ | Remove item específico |
+| DELETE | `/carrinho` | ✅ | Esvazia o carrinho |
+
+Todos os endpoints requerem header:
+```
+Authorization: Bearer <token_jwt>
+```
+
+### Exemplo — Adicionar item
+
+**POST** `/carrinho/itens`
+
+```json
+{
+  "produto_id": "1",
+  "nome": "Flamengo Home 2025",
+  "preco": 349.90,
+  "quantidade": 1
+}
+```
+
+---
+
+## Testando com Swagger
+
+1. Acesse **`http://localhost:3030/api`**
+2. Gere um token JWT de teste em **jwt.io** → aba **JWT Encoder**:
+   - Payload: `{ "sub": "qualquer-uuid", "email": "teste@email.com", "role": "user" }`
+   - Secret: `<jwt_secret>` com toggle **BASE64URL ENCODED desligado**
+3. Clique em **Authorize** → cole `Bearer <token>` → **Authorize**
+4. Teste os endpoints na ordem: `GET /carrinho` → `POST /carrinho/itens` → `GET /carrinho`
+
+---
+
+## Banco de Dados
+
+O schema é gerenciado pelo professor da faculdade no servidor MySQL do SENAC (`edumysql.acesso.rj.senac.br`).
+
+**Principais tabelas usadas:**
+
+| Tabela | Descrição |
+|--------|-----------|
+| `carrinho` | Um carrinho por usuário (status ATIVO) |
+| `item_carrinho` | Itens do carrinho com produto e quantidade |
+| `produto` | Cache local de produtos do catálogo |
+| `usuario` | Cache local de usuários do auth |
+| `status_carrinho` | Lookup de status (ATIVO, etc.) |
+
+Após alterar o `schema.prisma`, regenere o client:
+```bash
+npx prisma generate
+```
+
+---
+
+## Registro no Gateway (Felipe)
+
+Após subir o backend, pedir ao Felipe para registrar as rotas no banco do gateway:
+
+| Método | Path | Target URL | Auth |
+|--------|------|-----------|------|
+| GET | `/carrinho` | `http://localhost:3030/carrinho` | true |
+| POST | `/carrinho/itens` | `http://localhost:3030/carrinho/itens` | true |
+| PATCH | `/carrinho/itens/:id` | `http://localhost:3030/carrinho/itens` | true |
+| DELETE | `/carrinho/itens/:id` | `http://localhost:3030/carrinho/itens` | true |
+| DELETE | `/carrinho` | `http://localhost:3030/carrinho` | true |
+
+---
+
+## Solução de Problemas
+
+**Porta 3030 já em uso:**
+```bash
+# Windows
+netstat -ano | findstr :3030
+taskkill /PID <PID> /F
+
+# Linux/Mac
+lsof -i :3030
+kill -9 <PID>
+```
+
+**Erro de conexão com o banco:**
+- Confirme que está conectado à rede da faculdade ou VPN do SENAC
+- Verifique se o `DATABASE_URL` está correto (sem aspas extras nas variáveis de ambiente)
+
+**Container reiniciando em loop:**
+```bash
+docker logs carrinho-api   # ver o erro
+docker rm -f carrinho-api  # remover e tentar novamente
+```
+
+**Prisma: tabelas não encontradas:**
+```bash
+npx prisma db pull    # lê o schema atual do banco
+npx prisma generate   # regenera o client
+```
