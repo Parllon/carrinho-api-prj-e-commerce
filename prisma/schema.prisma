@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Carrinho {
+  id            String         @id @default(uuid()) @db.Char(36)
+  usuario_id    String         @db.Char(36)
+  criado_em     DateTime       @default(now()) @db.Timestamp(0)
+  atualizado_em DateTime       @updatedAt @db.Timestamp(0)
+  itens         ItemCarrinho[]
+
+  @@map("carrinhos")
+}
+
+model ItemCarrinho {
+  id             Int      @id @default(autoincrement())
+  carrinho_id    String   @db.Char(36)
+  produto_id     Int
+  nome_produto   String   @db.VarChar(255)
+  preco_unitario Float
+  tamanho        String   @db.VarChar(5)
+  quantidade     Int      @default(1)
+  url_imagem     String?  @db.Text
+  carrinho       Carrinho @relation(fields: [carrinho_id], references: [id], onDelete: Cascade)
+
+  @@map("itens_carrinho")
+}
